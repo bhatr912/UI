@@ -51,7 +51,7 @@ class DashboardView extends StatelessWidget {
                                     MainAxisAlignment.spaceBetween,
                                 children: [
                                   const Text(
-                                    'Analytics',
+                                    'Dashboard',
                                     style: TextStyle(
                                       fontSize: 24,
                                       fontWeight: FontWeight.w600,
@@ -223,11 +223,11 @@ class DashboardView extends StatelessWidget {
                 ),
                 const SizedBox(width: 12),
                 Text(
-                  'Dashboard',
+                  'Acmo Network',
                   style: TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.w600,
-                    color: Colors.grey.shade800,
+                    color: Colors.purple.shade600,
                     letterSpacing: -0.5,
                   ),
                 ),
@@ -240,37 +240,13 @@ class DashboardView extends StatelessWidget {
             child: ListView(
               padding: const EdgeInsets.symmetric(vertical: 16),
               children: [
-                _buildNavItemWithChildren(
-                  'Dashboard',
-                  Icons.dashboard_rounded,
-                  ['Overview', 'Analytics'],
-                  isSelected: true,
-                ),
-                _buildNavItemWithChildren(
-                  'Statistics',
-                  Icons.bar_chart,
-                  ['Revenue', 'Traffic'],
-                ),
-                _buildNavItemWithChildren(
-                  'Users',
-                  Icons.people,
-                  ['Overview', 'Security'],
-                ),
-                _buildNavItemWithChildren(
-                  'Inventory',
-                  Icons.inventory,
-                  ['Products', 'Stock'],
-                ),
-                _buildNavItemWithChildren(
-                  'Billing',
-                  Icons.receipt,
-                  ['Invoices', 'Payments'],
-                ),
-                _buildNavItemWithChildren(
-                  'Settings',
-                  Icons.settings,
-                  ['General', 'Security', 'Notifications'],
-                ),
+                _buildNavItem('Dashboard', Icons.dashboard_rounded,
+                    isSelected: true),
+                _buildNavItem('Statistics', Icons.bar_chart),
+                _buildNavItem('Users', Icons.people),
+                _buildNavItem('Inventory', Icons.inventory),
+                _buildNavItem('Billing', Icons.receipt),
+                _buildNavItem('Settings', Icons.settings),
               ],
             ),
           ),
@@ -367,7 +343,7 @@ class DashboardView extends StatelessWidget {
                 ),
                 SizedBox(width: 12),
                 Text(
-                  'Dashboard',
+                  'Acmo Network',
                   style: TextStyle(
                     color: Colors.purple,
                     fontSize: 24,
@@ -376,37 +352,12 @@ class DashboardView extends StatelessWidget {
               ],
             ),
           ),
-          _buildNavItemWithChildren(
-            'Dashboard',
-            Icons.dashboard_rounded,
-            ['Overview', 'Analytics'],
-            isSelected: true,
-          ),
-          _buildNavItemWithChildren(
-            'Statistics',
-            Icons.bar_chart,
-            ['Revenue', 'Traffic'],
-          ),
-          _buildNavItemWithChildren(
-            'Users',
-            Icons.people,
-            ['Overview', 'Security'],
-          ),
-          _buildNavItemWithChildren(
-            'Inventory',
-            Icons.inventory,
-            ['Products', 'Stock'],
-          ),
-          _buildNavItemWithChildren(
-            'Billing',
-            Icons.receipt,
-            ['Invoices', 'Payments'],
-          ),
-          _buildNavItemWithChildren(
-            'Settings',
-            Icons.settings,
-            ['General', 'Security', 'Notifications'],
-          ),
+          _buildNavItem('Dashboard', Icons.dashboard_rounded, isSelected: true),
+          _buildNavItem('Statistics', Icons.bar_chart),
+          _buildNavItem('Users', Icons.people),
+          _buildNavItem('Inventory', Icons.inventory),
+          _buildNavItem('Billing', Icons.receipt),
+          _buildNavItem('Settings', Icons.settings),
           const Divider(),
           _buildProfileSection(context),
         ],
@@ -439,61 +390,23 @@ class DashboardView extends StatelessWidget {
     );
   }
 
-  Widget _buildNavItemWithChildren(
-      String title, IconData icon, List<String> children,
-      {bool isSelected = false}) {
-    return Theme(
-      data: ThemeData().copyWith(dividerColor: Colors.transparent),
-      child: ExpansionTile(
-        leading: Container(
-          padding: const EdgeInsets.all(8),
-          decoration: BoxDecoration(
-            color: isSelected ? Colors.purple.shade50 : Colors.transparent,
-            borderRadius: BorderRadius.circular(8),
-          ),
-          child: Icon(
-            icon,
-            color: isSelected ? Colors.purple : Colors.grey.shade600,
-            size: 20,
-          ),
-        ),
-        title: Text(
-          title,
-          style: TextStyle(
-            color: isSelected ? Colors.purple : Colors.grey.shade700,
-            fontSize: 14,
-            fontWeight: isSelected ? FontWeight.w600 : FontWeight.w500,
-          ),
-        ),
-        backgroundColor: Colors.transparent,
-        collapsedBackgroundColor: Colors.transparent,
-        childrenPadding: const EdgeInsets.only(left: 16),
-        children: children.map((child) {
-          return ListTile(
-            contentPadding:
-                const EdgeInsets.symmetric(horizontal: 16, vertical: 0),
-            leading: Container(
-              width: 6,
-              height: 6,
-              decoration: BoxDecoration(
-                color: Colors.grey.shade400,
-                shape: BoxShape.circle,
-              ),
-            ),
-            title: Text(
-              child,
-              style: TextStyle(
-                color: Colors.grey.shade600,
-                fontSize: 13,
-                fontWeight: FontWeight.w400,
-              ),
-            ),
-            onTap: () {
-              // Handle navigation here
-            },
-          );
-        }).toList(),
+  Widget _buildNavItem(String title, IconData icon, {bool isSelected = false}) {
+    return ListTile(
+      leading: Icon(
+        icon,
+        color: isSelected ? Colors.purple : Colors.grey.shade600,
       ),
+      title: Text(
+        title,
+        style: TextStyle(
+          color: isSelected ? Colors.purple : Colors.grey.shade700,
+          fontSize: 14,
+          fontWeight: isSelected ? FontWeight.w600 : FontWeight.w500,
+        ),
+      ),
+      onTap: () {
+        // Handle navigation here
+      },
     );
   }
 
@@ -505,7 +418,7 @@ class DashboardView extends StatelessWidget {
         decoration: InputDecoration(
           isDense: true,
           contentPadding: const EdgeInsets.symmetric(vertical: 12),
-          hintText: 'Search dashboard...',
+          hintText: 'Search ...',
           hintStyle: TextStyle(
             color: Colors.grey.shade500,
             fontSize: 14,
